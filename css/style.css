@@ -1,0 +1,85 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #f4f6f8;
+}
+
+.screen {
+  display: none;
+  height: 100%;
+  padding: 24px;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* HOME SCREEN LAYOUT: left box, center start button, right plus */
+.home-layout {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.pattern-box {
+  width: 25%;
+  height: 120px;
+  border: 2px solid #2b6cb0;
+  border-radius: 12px;
+  background: white;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.start-button {
+  flex: 1;
+  height: 180px;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  background: #2b6cb0;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+}
+
+.plus-button {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #38a169;
+  color: white;
+  font-size: 28px;
+  border: none;
+}
+
+.back-btn {
+  margin-top: auto;
+  padding: 12px;
+  background: #cbd5e0;
+  border: none;
+  border-radius: 8px;
+}
+
+#countdown-label {
+  font-size: 64px;
+  text-align: center;
+}
+
+.manual-next-button {
+  padding: 20px;
+  font-size: 20px;
+  background: #2b6cb0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}

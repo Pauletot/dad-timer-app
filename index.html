@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Exercise Timer</title>
+
+  <!-- PWA essentials -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#2b6cb0" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- HOME SCREEN -->
+  <main id="home-screen" class="screen active">
+    <div class="home-layout">
+      <button id="pattern-select-btn" class="pattern-box">
+        <span id="pattern-select-label">Choose pattern</span>
+      </button>
+
+      <button id="start-btn" class="start-button">Start</button>
+
+      <button id="add-pattern-btn" class="plus-button" aria-label="Create new pattern">+</button>
+    </div>
+  </main>
+
+  <!-- PATTERN LIST (shown when tapping the left box) -->
+  <section id="pattern-list-screen" class="screen">
+    <h2>Your patterns</h2>
+    <ul id="pattern-list"></ul>
+    <button class="back-btn" data-back-to="home-screen">Back</button>
+  </section>
+
+  <!-- PATTERN EDITOR (shown when tapping +) -->
+  <section id="pattern-editor-screen" class="screen">
+    <h2>New pattern</h2>
+    <input id="pattern-name-input" type="text" placeholder="Pattern name" />
+    <ul id="step-list"></ul>
+    <button id="add-step-btn">+ Add step</button>
+    <button id="save-pattern-btn">Save pattern</button>
+    <button class="back-btn" data-back-to="home-screen">Cancel</button>
+  </section>
+
+  <!-- TIMER RUN SCREEN -->
+  <section id="timer-screen" class="screen">
+    <p id="step-index-label"></p>
+    <h1 id="countdown-label">00:00</h1>
+    <p id="mode-label"></p>
+    <button id="manual-next-btn" class="manual-next-button">Next</button>
+    <button id="stop-btn" class="back-btn">Stop</button>
+  </section>
+
+  <script src="js/db.js" type="module"></script>
+  <script src="js/timer.js" type="module"></script>
+  <script src="js/ui.js" type="module"></script>
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>
