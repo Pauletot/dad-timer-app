@@ -31,18 +31,18 @@
   <!-- PATTERN LIST (shown when tapping the left box) -->
   <section id="pattern-list-screen" class="screen">
     <h2>Your patterns</h2>
-    <ul id="pattern-list"></ul>
-    <button class="back-btn" data-back-to="home-screen">Back</button>
+    <ul id="pattern-list" class="pattern-list"></ul>
+    <button class="text-btn back-btn" data-back-to="home-screen">Back</button>
   </section>
 
   <!-- PATTERN EDITOR (shown when tapping +) -->
   <section id="pattern-editor-screen" class="screen">
     <h2>New pattern</h2>
-    <input id="pattern-name-input" type="text" placeholder="Pattern name" />
-    <ul id="step-list"></ul>
-    <button id="add-step-btn">+ Add step</button>
-    <button id="save-pattern-btn">Save pattern</button>
-    <button class="back-btn" data-back-to="home-screen">Cancel</button>
+    <input id="pattern-name-input" class="text-input" type="text" placeholder="Pattern name" />
+    <ul id="step-list" class="step-list"></ul>
+    <button id="add-step-btn" class="text-btn add-step-btn">+ Add step</button>
+    <button id="save-pattern-btn" class="primary-btn">Save pattern</button>
+    <button class="text-btn back-btn" data-back-to="home-screen">Cancel</button>
   </section>
 
   <!-- TIMER RUN SCREEN -->
@@ -50,7 +50,7 @@
   <p id="step-index-label"></p>
 
   <div class="progress-wrapper">
-    <svg class="progress-ring" width="220" height="220">
+    <svg class="progress-ring" viewBox="0 0 220 220">
       <circle class="progress-ring-bg" cx="110" cy="110" r="100" />
       <circle id="progress-ring-fg" class="progress-ring-fg" cx="110" cy="110" r="100" />
     </svg>

@@ -1,18 +1,32 @@
 * {
   box-sizing: border-box;
-  font-family: system-ui, sans-serif;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
   margin: 0;
-  height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
   background: #f4f6f8;
+  color: #1a202c;
+  /* Respects the notch/status bar on phones (safe-area insets) */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+           env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
+
+h2 {
+  font-size: 20px;
+  margin: 0 0 16px;
+}
+
+/* ---------- Screens ---------- */
 
 .screen {
   display: none;
-  height: 100%;
-  padding: 24px;
+  min-height: 100vh;
+  padding: 20px 16px;
 }
 
 .screen.active {
@@ -20,78 +34,265 @@ body {
   flex-direction: column;
 }
 
-/* HOME SCREEN LAYOUT: left box, center start button, right plus */
+/* ---------- HOME SCREEN ---------- */
+
 .home-layout {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .pattern-box {
-  width: 25%;
-  height: 120px;
+  width: 110px;
+  min-height: 100px;
   border: 2px solid #2b6cb0;
-  border-radius: 12px;
+  border-radius: 14px;
   background: white;
   font-size: 14px;
-  padding: 8px;
+  padding: 10px;
+  color: #2b6cb0;
+  font-weight: 600;
+  word-break: break-word;
 }
 
 .start-button {
-  flex: 1;
-  height: 180px;
+  width: clamp(140px, 45vw, 200px);
+  height: clamp(140px, 45vw, 200px);
   border-radius: 50%;
-  aspect-ratio: 1 / 1;
   background: #2b6cb0;
   color: white;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: bold;
   border: none;
+  box-shadow: 0 4px 14px rgba(43, 108, 176, 0.4);
+}
+
+.start-button:active {
+  background: #235a94;
 }
 
 .plus-button {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: #38a169;
   color: white;
   font-size: 28px;
   border: none;
+  box-shadow: 0 3px 10px rgba(56, 161, 105, 0.4);
+  flex-shrink: 0;
+}
+
+.plus-button:active {
+  background: #2f855a;
+}
+
+/* ---------- Generic buttons used across screens ---------- */
+
+.primary-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 17px;
+  font-weight: 600;
+  background: #2b6cb0;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-top: 12px;
+}
+
+.primary-btn:active {
+  background: #235a94;
+}
+
+.text-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  background: none;
+  border: 2px solid #cbd5e0;
+  border-radius: 10px;
+  color: #4a5568;
+  margin-top: 10px;
+}
+
+.text-btn:active {
+  background: #e2e8f0;
 }
 
 .back-btn {
   margin-top: auto;
-  padding: 12px;
-  background: #cbd5e0;
-  border: none;
-  border-radius: 8px;
 }
 
-#countdown-label {
-  font-size: 64px;
+.add-step-btn {
+  border-style: dashed;
+  color: #2b6cb0;
+  border-color: #2b6cb0;
+}
+
+/* Small action buttons inside list rows (Edit / Use / Delete / Remove) */
+.row-btn {
+  flex: 1;
+  padding: 10px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  min-width: 0;
+}
+
+.row-btn-primary {
+  background: #2b6cb0;
+  color: white;
+}
+
+.row-btn-neutral {
+  background: #e2e8f0;
+  color: #2d3748;
+}
+
+.row-btn-danger {
+  background: #fed7d7;
+  color: #c53030;
+}
+
+/* ---------- Text inputs ---------- */
+
+.text-input,
+.step-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px; /* 16px prevents iOS/Android auto-zoom-on-focus */
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  background: white;
+}
+
+.text-input {
+  margin-bottom: 16px;
+}
+
+/* ---------- Pattern list screen ---------- */
+
+.pattern-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pattern-row {
+  background: white;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.pattern-row-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.pattern-row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ---------- Pattern editor: step cards ---------- */
+
+.step-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step-card {
+  background: white;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.step-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.step-card-title {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.step-card-header .row-btn {
+  flex: none;
+  padding: 6px 12px;
+}
+
+.step-card-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.step-card-field .step-input {
+  width: 90px;
   text-align: center;
 }
 
-.manual-next-button {
-  padding: 20px;
-  font-size: 20px;
-  background: #2b6cb0;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  margin-bottom: 12px;
+.step-card-field-checkbox {
+  justify-content: flex-start;
+  font-size: 15px;
+  color: #1a202c;
+}
+
+.step-card-field-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ---------- Timer run screen ---------- */
+
+#step-index-label {
+  text-align: center;
+  font-size: 15px;
+  color: #4a5568;
+  margin: 0 0 8px;
+}
+
+#mode-label {
+  text-align: center;
+  font-size: 14px;
+  color: #718096;
+  margin: 0 0 20px;
 }
 
 .progress-wrapper {
   position: relative;
-  width: 220px;
-  height: 220px;
-  margin: 24px auto;
+  width: min(70vw, 260px);
+  height: min(70vw, 260px);
+  margin: 16px auto 24px;
 }
 
 .progress-ring {
+  width: 100%;
+  height: 100%;
   transform: rotate(-90deg); /* so it starts at 12 o'clock, not 3 o'clock */
 }
 
@@ -111,15 +312,36 @@ body {
 
 .progress-label {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
+  font-size: clamp(32px, 10vw, 48px);
   font-weight: bold;
+}
+
+.manual-next-button {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 12px;
+  display: block;
+  padding: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  background: #2b6cb0;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+.manual-next-button:active {
+  background: #235a94;
+}
+
+#reset-btn {
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Full-screen "Routine complete!" message — appears on its own,
@@ -132,7 +354,7 @@ body {
   color: white;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+  font-size: clamp(24px, 7vw, 36px);
   font-weight: bold;
   text-align: center;
   padding: 24px;

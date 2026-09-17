@@ -120,9 +120,18 @@ async function renderPatternList() {
     const steps = await getStepsForPattern(pattern.id);
 
     const li = document.createElement('li');
-    li.textContent = `${pattern.name} — ${steps.length} step(s)  `;
+    li.className = 'pattern-row';
+
+    const nameLine = document.createElement('div');
+    nameLine.className = 'pattern-row-name';
+    nameLine.textContent = `${pattern.name} — ${steps.length} step(s)`;
+    li.appendChild(nameLine);
+
+    const btnRow = document.createElement('div');
+    btnRow.className = 'pattern-row-actions';
 
     const editBtn = document.createElement('button');
+    editBtn.className = 'row-btn row-btn-neutral';
     editBtn.textContent = 'Edit';
     editBtn.addEventListener('click', () => {
       editingPatternId = pattern.id;
@@ -138,6 +147,7 @@ async function renderPatternList() {
     });
 
     const useBtn = document.createElement('button');
+    useBtn.className = 'row-btn row-btn-primary';
     useBtn.textContent = 'Use';
     useBtn.addEventListener('click', () => {
       selectedPatternId = pattern.id;
@@ -147,6 +157,7 @@ async function renderPatternList() {
     });
 
     const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'row-btn row-btn-danger';
     deleteBtn.textContent = 'Delete';
     deleteBtn.addEventListener('click', async () => {
       const confirmed = confirm(`Delete "${pattern.name}"? This can not be undone.`);
@@ -156,9 +167,10 @@ async function renderPatternList() {
       await renderPatternList();
     });
 
-    li.appendChild(editBtn);
-    li.appendChild(useBtn);
-    li.appendChild(deleteBtn);
+    li.appendChild(btnRow);
+    btnRow.appendChild(editBtn);
+    btnRow.appendChild(useBtn);
+    btnRow.appendChild(deleteBtn);
     listEl.appendChild(li);
   }
 
