@@ -116,6 +116,7 @@ export class TimerEngine {
   // a full second for the first interval tick.
   _startStepInterval() {
     const step = this.steps[this.currentIndex];
+    const isLastStep = this.currentIndex === this.steps.length - 1;
 
     this.onTick(this.secondsLeft);
 
@@ -127,7 +128,12 @@ export class TimerEngine {
         clearInterval(this.intervalId);
         this.intervalId = null;
 
-        if (step.isAutomatic) {
+        if (isLastStep) {
+          // Nothing to advance to — finish immediately, whether this step
+          // was automatic (skip the transition delay) or manual (skip
+          // waiting for a "Next" tap).
+          this._advanceToNextStep();
+        } else if (step.isAutomatic) {
           this._runTransitionDelay(step.transitionDelaySeconds || 0);
         } else {
           this.awaitingManualAdvance = true;
