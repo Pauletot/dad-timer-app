@@ -47,16 +47,32 @@
 
   <!-- TIMER RUN SCREEN -->
   <section id="timer-screen" class="screen">
-    <p id="step-index-label"></p>
-    <h1 id="countdown-label">00:00</h1>
-    <p id="mode-label"></p>
-    <button id="manual-next-btn" class="manual-next-button">Next</button>
-    <button id="stop-btn" class="back-btn">Stop</button>
-  </section>
+  <p id="step-index-label"></p>
+
+  <div class="progress-wrapper">
+    <svg class="progress-ring" width="220" height="220">
+      <circle class="progress-ring-bg" cx="110" cy="110" r="100" />
+      <circle id="progress-ring-fg" class="progress-ring-fg" cx="110" cy="110" r="100" />
+    </svg>
+    <div id="countdown-label" class="progress-label">00:00</div>
+  </div>
+
+  <p id="mode-label"></p>
+  <button id="manual-next-btn" class="manual-next-button">Next</button>
+  <button id="pause-btn" class="manual-next-button">Pause</button>
+  <button id="reset-btn" class="back-btn">Reset</button>
+
+  <!-- Shown automatically when a routine finishes; no tap needed to dismiss -->
+  <div id="finished-overlay" class="finished-overlay">
+    <p>Routine complete!</p>
+  </div>
+</section>
 
   <script src="js/db.js" type="module"></script>
   <script src="js/timer.js" type="module"></script>
   <script src="js/ui.js" type="module"></script>
+  <script src="js/alerts.js" type="module"></script>
+  <script src="js/wakelock.js" type="module"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>

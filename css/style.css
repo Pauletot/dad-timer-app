@@ -83,3 +83,65 @@ body {
   border-radius: 8px;
   margin-bottom: 12px;
 }
+
+.progress-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 24px auto;
+}
+
+.progress-ring {
+  transform: rotate(-90deg); /* so it starts at 12 o'clock, not 3 o'clock */
+}
+
+.progress-ring-bg {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 12;
+}
+
+.progress-ring-fg {
+  fill: none;
+  stroke: #2b6cb0;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.progress-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/* Full-screen "Routine complete!" message — appears on its own,
+   no tap needed, and fades itself out automatically. */
+.finished-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 108, 176, 0.95);
+  color: white;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 10;
+}
+
+.finished-overlay.visible {
+  display: flex;
+  opacity: 1;
+}

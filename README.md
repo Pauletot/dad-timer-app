@@ -21,3 +21,10 @@ Skeleton only — screens are navigable but no data/timer logic yet.
 
 Open with a local server (not by double-clicking the HTML file, since ES modules
 require `http://` not `file://`). See setup instructions for VS Code Live Server.
+
+
+## Things to improve
+
+- sound after each step
+- no automatic transition after the last step
+- when you press continue, it takes a second to restart again -> should be better to start suddenly
