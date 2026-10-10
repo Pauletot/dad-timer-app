@@ -66,6 +66,17 @@ document.getElementById('add-step-btn').addEventListener('click', () => {
   renderStepList(currentSteps, removeStep);
 });
 
+document.getElementById('copy-step-btn').addEventListener('click', () => {
+  if (currentSteps.length === 0) {
+    alert('Add a step first, then you can copy it.');
+    return;
+  }
+
+  const lastStep = currentSteps[currentSteps.length - 1];
+  currentSteps.push({ ...lastStep }); // { ...obj } makes an independent copy
+  renderStepList(currentSteps, removeStep);
+});
+
 function removeStep(index) {
   currentSteps.splice(index, 1);
   renderStepList(currentSteps, removeStep);
@@ -269,4 +280,10 @@ document.getElementById('reset-btn').addEventListener('click', () => {
   releaseWakeLock();
   pauseBtn.textContent = 'Pause';
   showScreen('home-screen');
+});
+
+document.getElementById('restart-step-btn').addEventListener('click', () => {
+  if (!engine) return;
+  engine.restartStep();
+  pauseBtn.textContent = 'Pause'; // restarting also un-pauses
 });

@@ -338,7 +338,8 @@ h2 {
   background: #235a94;
 }
 
-#reset-btn {
+#reset-btn,
+#restart-step-btn {
   max-width: 320px;
   margin-left: auto;
   margin-right: auto;

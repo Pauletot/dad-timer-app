@@ -86,6 +86,27 @@ export class TimerEngine {
     this.pausedPhase = null;
   }
 
+  // Restarts only the step currently running (or the one that just ended
+  // and is in its transition delay / waiting for "Next"), without
+  // touching the rest of the pattern.
+  restartStep() {
+    if (this.currentIndex < 0 || this.currentIndex >= this.steps.length) return;
+
+    clearInterval(this.intervalId);
+    clearInterval(this.delayIntervalId);
+    this.intervalId = null;
+    this.delayIntervalId = null;
+    this.awaitingManualAdvance = false;
+    this.isPaused = false;
+    this.pausedPhase = null;
+
+    const step = this.steps[this.currentIndex];
+    this.secondsLeft = step.durationSeconds;
+
+    this.onStepChange(this.currentIndex, step); // resets labels, ring, hides Next button
+    this._startStepInterval();
+  }
+
   // Called when the user taps the manual "Next" button.
   manualAdvance() {
     if (this.awaitingManualAdvance) {
